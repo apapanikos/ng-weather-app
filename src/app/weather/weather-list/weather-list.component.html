@@ -1,5 +1,9 @@
-<div *ngFor="let we of (weather$ | async)">
+<!-- <div *ngFor="let we of (weather$ | async)">
   <h1> City: {{we?.name}} </h1>
   <h2> Temperature: {{we?.main.temp}} , humidity: {{we?.main.humidity}} %, Wind: {{we?.wind.speed}} meter/sec</h2>
   <p> Desc: {{we?.weather[0].description}} </p>
-</div>
+</div> -->
+<app-weather-item
+ *ngFor="let weatherEl of (weather$ | async)"
+ [weather]="weatherEl"
+ ><app-weather-item>
