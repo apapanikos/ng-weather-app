@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import {Router} from '@angular/router';
+
+
 
 // import { weather$ } from '../weather-list.component'
 
@@ -12,12 +14,17 @@ import { Observable } from 'rxjs';
 export class WeatherItemComponent implements OnInit {
 
   @Input() weather : string [];
+  // @Input() city: string;
   @Input() index: number;
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit() {
     console.log(this.weather)
   }
 
+
+  openDetails(id:number) {
+    this.router.navigate(['/weather-details', id]);
+  }
 }

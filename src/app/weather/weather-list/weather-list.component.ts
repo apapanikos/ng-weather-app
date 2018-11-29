@@ -11,13 +11,13 @@ import { Observable } from 'rxjs';
 export class WeatherListComponent implements OnInit {
 
   public weather$ : Observable<string []>;
-  // city = 'London,uk'
+
 
   constructor(private WeatherService : WeatherService) { }
 
   ngOnInit() {
 
-        //Call Job Service function to fetch active job data
+        //Call Weather Service function to fetch weather data
         this.weather$ = this.WeatherService.getCitiesWeather()
 
   }
