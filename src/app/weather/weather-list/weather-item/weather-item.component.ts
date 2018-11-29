@@ -24,7 +24,7 @@ export class WeatherItemComponent implements OnInit {
   }
 
 
-  openDetails(id:number) {
-    this.router.navigate(['/weather-details', id]);
+  openDetails(city: string) {
+    this.router.navigate(['/weather-details', city]);
   }
 }

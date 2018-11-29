@@ -27,10 +27,10 @@ export class WeatherService {
        )
   }
 
-  public getCityWeather(id:string): Observable<string []> {
+  public getCityWeather(city:string): Observable<string []> {
 
     return this.http.get(
-      `https://api.openweathermap.org/data/2.5/weather?id=${id}&units=metric&APPID=30f1d904a53ba7ce70e4e9cc58cf2403`)
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=30f1d904a53ba7ce70e4e9cc58cf2403`)
        .pipe(
          map(
            data =>
