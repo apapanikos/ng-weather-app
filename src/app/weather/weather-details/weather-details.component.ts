@@ -29,9 +29,7 @@ export class WeatherDetailsComponent implements OnInit {
 
 
 
-public myForecast:Forecast[] = [
-
-];
+public myForecast:Forecast[] = [];
   
 
 
@@ -69,11 +67,11 @@ public myForecast:Forecast[] = [
 
 
 
-    const today = new Date().getDay();
+    const todayNumber = new Date().getDay();
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
     //Match today number result in Day name
-    this.today = days[today];
+    this.today = days[todayNumber];
 
       const forecast = this.route.paramMap.pipe(
         switchMap((params: ParamMap) =>
@@ -82,26 +80,32 @@ public myForecast:Forecast[] = [
     )
     //Subscribe to access every day's date
     forecast.subscribe((data: any) => {
-        for (let i=0 ; i < data.length ; i+=8){
+
+        for (let i=0 ; i < data.length ; i++){
 
             //Get day from weather data
             const date = new Date(data[i].dt_txt).getDay()
-            const nextDate = new Date(data[i].dt_txt).getDay()
-            
 
-            // if(i==0 || i==8 || i===16 || i==24 || i==32){
-              console.log(data[i])
-              // console.log(days[date], data[i].weather[0].main, Math.round(data[i].main.temp))
+            //Get nextDate
+            const nextDate = new Date(data[(i+1)%data.length].dt_txt).getDay()
 
-              this.myForecast.push({
-                day: days[date],
-                main: data[i+4].weather[0].main,
-                temp: Math.round(data[i+4].main.temp)
-              })
+              //For tomorrow day and when find nextDate 
+              if (date !== todayNumber && nextDate !== date){
 
-              console.log(data[i+4])
-            // }
+                //Store average day temperature
+                const avgDayTemp = Math.round((data[i].main.temp + data[i-1].main.temp + data[i-2].main.temp + data[i-3].main.temp)/4)
+                 
+                //Store data in array of objects
+                  this.myForecast.push({
+                    day: days[date],
+                    main: data[i-2].weather[0].main,
+                    temp: avgDayTemp 
+                  })   
 
+                  //Debugging purpose
+                  console.log(avgDayTemp)
+                  console.log(data[i].main.temp, data[i-1].main.temp, data[i-2].main.temp, data[i-3].main.temp)
+              } 
             
         }
       }
