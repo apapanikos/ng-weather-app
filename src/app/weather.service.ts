@@ -15,6 +15,7 @@ export class WeatherService {
   constructor(public http: HttpClient) { }
 
 
+  //Fetch 5 cities weather
   public getCitiesWeather(): Observable<string[]> {
 
     return this.http.get(
@@ -27,6 +28,7 @@ export class WeatherService {
        )
   }
 
+  //Fetch city weather by name
   public getCityWeather(city:string): Observable<string []> {
 
     return this.http.get(
@@ -34,10 +36,23 @@ export class WeatherService {
        .pipe(
          map(
            data =>
-           data['weather'] as string[]
+           data as string[]
          )
        )
   }
+
+    //Fetch Forecast 5 days/3hours
+    public getCityForecast(city:string): Observable<string []> {
+
+      return this.http.get(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&APPID=30f1d904a53ba7ce70e4e9cc58cf2403`)
+         .pipe(
+           map(
+             data =>
+             data['list'] as string[]
+           )
+         )
+    }
 }
 
 
