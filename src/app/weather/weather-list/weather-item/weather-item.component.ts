@@ -20,7 +20,7 @@ export class WeatherItemComponent implements OnInit {
   constructor(public router: Router) { }
 
   ngOnInit() {
-    console.log(this.weather)
+    // console.log(this.weather)
   }
 
 

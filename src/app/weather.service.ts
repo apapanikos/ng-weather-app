@@ -19,7 +19,7 @@ export class WeatherService {
   public getCitiesWeather(): Observable<string[]> {
 
     return this.http.get(
-      `http://api.openweathermap.org/data/2.5/group?id=2643743,6455259,2950159,2759794,264371&&units=metric&APPID=30f1d904a53ba7ce70e4e9cc58cf2403`)
+      `http://api.openweathermap.org/data/2.5/group?id=2643743,6455259,2950159,1850147,4887398,2147714&&units=metric&APPID=30f1d904a53ba7ce70e4e9cc58cf2403`)
        .pipe(
          map(
            data =>

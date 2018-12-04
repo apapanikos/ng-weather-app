@@ -100,19 +100,22 @@ public myForecast:Forecast[] = [];
 
                   //Debugging purposes
                   // console.log(avgDayTemp)
-                  // console.log(data[i].main.temp, data[i-1].main.temp, data[i-2].main.temp, data[i-3].main.temp)
               }
-
+              
+              //For today's all temperatures
               if(date === todayNumber){
 
                 console.log(data[i])
-
+                   
+                //Add today temperatures to the array
                 this.todayTemps.push(data[i].main.temp)
-                console.log(this.todayTemps)
+                
+                //Sort temperature values in ascended order
                 const sortedTemps = this.todayTemps.slice().sort((a, b) =>{
                   return a - b;
                 });
                 
+                //Set minimum and maximum value of temperatures
                 const min = sortedTemps[0],                      
                     max  = sortedTemps[sortedTemps.length - 1];
 

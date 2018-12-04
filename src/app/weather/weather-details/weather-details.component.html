@@ -2,15 +2,9 @@
     <h1> {{ cityWeather.name }} </h1>
     <h2> {{cityWeather.main.temp | number:'1.0-0'}} &#8451;, humidity: {{cityWeather.main.humidity}} %, Wind: {{cityWeather.wind.speed | number:'1.0-0'}} meter/sec</h2>
    <div> {{ cityWeather.weather[0].description }} </div>
+    <h2>min: {{ minTemp }}, max: {{ maxTemp }}</h2>
 </div>
-<div *ngIf="forecast$ | async as cityForecast" style="text-align: center;">
-  <ul style="list-style: none; display: flex;">
-      <li *ngFor="let forecast of cityForecast">
-          <h3>{{ forecast.main.temp | number:'1.0-0' }}</h3>
-          <h4>{{ forecast.dt_txt }}</h4>
-      </li>
-  </ul>
-</div>
+
 <ul style="text-align: center; list-style: none;">
     <li *ngFor="let state of myForecast"> 
         {{ state.day }}
@@ -19,7 +13,3 @@
     </li>
     
 </ul>
-<div>
-    <h1>{{ minTemp }}</h1>
-    <h1>{{ maxTemp }}</h1>
-</div>
