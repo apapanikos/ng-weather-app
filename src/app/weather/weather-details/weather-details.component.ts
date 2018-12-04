@@ -27,12 +27,14 @@ export class WeatherDetailsComponent implements OnInit {
 
   today: string;
 
+  public todayTemps: number [] = [];
+
+  maxTemp: number;
+  minTemp: number;
 
 
 public myForecast:Forecast[] = [];
   
-
-
 
   constructor(
     private WeatherService : WeatherService,
@@ -58,26 +60,20 @@ public myForecast:Forecast[] = [];
         this.WeatherService.getCityWeather(params.get('city')))
     );
 
-  //   this.forecast$ = this.route.paramMap.pipe(
-  //     switchMap((params: ParamMap) =>
-  //     this.WeatherService.getCityForecast(params.get('city'))
-  //     )
-  // )
-
-
-
-
+    //Get today in umber
     const todayNumber = new Date().getDay();
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
     //Match today number result in Day name
     this.today = days[todayNumber];
 
+    //Get city name from url and call function from service to fetch weather data of this city
       const forecast = this.route.paramMap.pipe(
         switchMap((params: ParamMap) =>
         this.WeatherService.getCityForecast(params.get('city'))
         )
     )
+
     //Subscribe to access every day's date
     forecast.subscribe((data: any) => {
 
@@ -102,12 +98,32 @@ public myForecast:Forecast[] = [];
                     temp: avgDayTemp 
                   })   
 
-                  //Debugging purpose
-                  console.log(avgDayTemp)
-                  console.log(data[i].main.temp, data[i-1].main.temp, data[i-2].main.temp, data[i-3].main.temp)
-              } 
-            
-        }
+                  //Debugging purposes
+                  // console.log(avgDayTemp)
+                  // console.log(data[i].main.temp, data[i-1].main.temp, data[i-2].main.temp, data[i-3].main.temp)
+              }
+
+              if(date === todayNumber){
+
+                console.log(data[i])
+
+                this.todayTemps.push(data[i].main.temp)
+                console.log(this.todayTemps)
+                const sortedTemps = this.todayTemps.slice().sort((a, b) =>{
+                  return a - b;
+                });
+                
+                const min = sortedTemps[0],                      
+                    max  = sortedTemps[sortedTemps.length - 1];
+
+                this.minTemp = Math.round(min)
+                this.maxTemp = Math.round(max)
+    
+              }
+
+        }     
+
+
       }
     )
 

@@ -1,6 +1,6 @@
 <div style="text-align: center;" (click)="openDetails(weather.name)" > 
         <h1> {{weather?.name}} </h1>
-        <h2> Temperature: {{weather?.main.temp | number:'1.0-0'}} , humidity: {{weather?.main.humidity}} %, Wind: {{weather?.wind.speed | number:'1.0-0'}} meter/sec</h2>
-        <p> Desc: {{weather?.weather[0].description}} </p>
+        <h2>{{weather?.main.temp | number:'1.0-0'}} &#8451;</h2>
+        <p> {{weather?.weather[0].main}} </p>
 </div>
 

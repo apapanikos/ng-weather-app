@@ -1,6 +1,6 @@
 <div *ngIf="weather$ | async as cityWeather" style="text-align: center;">
     <h1> {{ cityWeather.name }} </h1>
-    <h2> Temperature: {{cityWeather.main.temp | number:'1.0-0'}} , humidity: {{cityWeather.main.humidity}} %, Wind: {{cityWeather.wind.speed | number:'1.0-0'}} meter/sec</h2>
+    <h2> {{cityWeather.main.temp | number:'1.0-0'}} &#8451;, humidity: {{cityWeather.main.humidity}} %, Wind: {{cityWeather.wind.speed | number:'1.0-0'}} meter/sec</h2>
    <div> {{ cityWeather.weather[0].description }} </div>
 </div>
 <div *ngIf="forecast$ | async as cityForecast" style="text-align: center;">
@@ -19,3 +19,7 @@
     </li>
     
 </ul>
+<div>
+    <h1>{{ minTemp }}</h1>
+    <h1>{{ maxTemp }}</h1>
+</div>
