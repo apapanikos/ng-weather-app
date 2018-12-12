@@ -2,10 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import {Router} from '@angular/router';
 
 
-
-// import { weather$ } from '../weather-list.component'
-
-
 @Component({
   selector: 'app-weather-item',
   templateUrl: './weather-item.component.html',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap} from '@angular/router';
+import { Router,ActivatedRoute, ParamMap} from '@angular/router';
 import { WeatherService } from '../../weather.service';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -38,6 +38,7 @@ public myForecast:Forecast[] = [];
 
   constructor(
     private WeatherService : WeatherService,
+    private router: Router,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -131,5 +132,6 @@ public myForecast:Forecast[] = [];
     )
 
   }
+
 
 }

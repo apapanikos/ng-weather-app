@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+// import { HTTP_INTERCEPTORS } from '@angular/common/http';
+// import { HttpErrorInterceptor } from './404.interceptor';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +12,7 @@ import { WeatherListComponent } from './weather/weather-list/weather-list.compon
 import { WeatherComponent } from './weather/weather.component';
 import { WeatherDetailsComponent } from './weather/weather-details/weather-details.component';
 import { SearchComponent } from './search/search.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,8 @@ import { SearchComponent } from './search/search.component';
     WeatherItemComponent,
     WeatherComponent,
     WeatherDetailsComponent,
-    SearchComponent
+    SearchComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
